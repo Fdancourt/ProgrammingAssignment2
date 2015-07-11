@@ -1,7 +1,7 @@
 ## This script allows us to cache the inverse of matrix x and then reuse the inverse of matrix x without having to reinverse the matrix x again.
 
 ## makeCacheMatrix returns a list of function applied to the matrix x which is given as an argument.
-makeCacheMatrix <- function(M1 = matrix()) {
+makeCacheMatrix <- function(x = matrix()) {
   
   ## invMat will store our cached inverse matrix (or NULL if nothing is stored yet)
   invMat <- NULL
@@ -33,6 +33,12 @@ makeCacheMatrix <- function(M1 = matrix()) {
        getInverse = getInverse)
 }
 
+######################################################################################
+
+#############                    Function cashSolve               ####################
+
+######################################################################################
+
 
 ## The function "cacheSolve" returns the inverse of a special matrix x, 
 ## created by the function "makeCacheMatrix"
@@ -41,7 +47,8 @@ cacheSolve <- function(x, ...) {
   invMat <- x$getInverse()
   
   ## If the variable invMat is not empty then it means that the inverse of matrix x
-  ## is cached and we can already use it without any new computation.
+  ## is cached and we can use it without any new computation.
+  
   if(!is.null(invMat)) {
     ## If we use the cached matrix then we print a message and return it
     message("getting cached data")
